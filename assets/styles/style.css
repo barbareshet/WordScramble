@@ -1,0 +1,25 @@
+body {
+    padding: 50px;
+}
+
+.btn {
+    border-radius: 0;
+    margin: 0 auto;
+}
+.output{
+    text-transform: uppercase;
+    padding: 15px;
+    font-size: 4em;
+    letter-spacing: 0.5em;
+}
+.form-control{
+    border-radius: 0;
+    font-size: 3em;
+    margin: 25px auto;
+    letter-spacing: 0.5em;
+    text-align: center;
+    text-transform: uppercase
+}
+.alert{
+    border-radius: 0;
+}
