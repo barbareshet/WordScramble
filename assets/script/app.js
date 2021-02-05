@@ -144,19 +144,21 @@ function gameOver() {
     game.gameOver = true;
     console.log('game over');
     let alert = "danger";
-    const msg = document.createElement('div');
+    let msg;
     if (game.score > game.incorrect) {
         alert = "success";
-        msg.innerHtml =  `<div>Great <i class="fas fa-trophy"></i></div>`;
+        msg =  "Great";
         
     } else if (game.score < game.incorrect) {
         alert = "danger";
+        msg =  "Better luck next time";
     } else if (game.score == game.incorrect){
         alert = "warning";
+        msg =  "You did well";
     }
-    gameArea.append(msg);
-    gameArea.innerHTML += `<div class="alert alert-${alert}"><h3>You got ${game.score} correct & ${game.incorrect} incorrect answer of ${game.played}</h3></div>`;
-    
+    // gameArea.append(msg);
+    gameArea.innerHTML = `<div id="gameOverMsg" class="alert alert-${alert}">${msg}<i class="fas fa-trophy"></i><h3>You got ${game.score} correct & ${game.incorrect} incorrect answer of ${game.played}</h3></div>`;
+    restart.classList.add("btn", "btn-info", "btn-lg", "restart-btn");
     textContent = "Restat";
     restart.innerHTML = `${textContent} <i class="fas fa-redo"></i>`;
     gameArea.append(restart);

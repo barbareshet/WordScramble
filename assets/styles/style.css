@@ -1,5 +1,6 @@
 body {
     padding: 50px;
+    direction: rtl;
 }
 
 .btn {
@@ -22,4 +23,22 @@ body {
 }
 .alert{
     border-radius: 0;
+}
+#gameOverMsg{
+    padding: 25px;
+    font-size: 4em;
+}
+.restart-btn{
+    color: #fff;
+}
+@media screen and (max-width: 640px){
+    body{
+        padding: 1em;
+    }
+    .output{
+        font-size: 2em;
+    }
+    .form-control{
+        font-size: 2em;
+    }
 }
