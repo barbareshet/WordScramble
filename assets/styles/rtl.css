@@ -1,0 +1,7 @@
+body {
+    direction: rtl;
+}
+
+.nav-masthead .nav-link {
+    margin-left: 1em;
+}

@@ -17,7 +17,7 @@ function gameStart() {
     //creating the elements
     btn.classList.add("btn", "btn-primary", "btn-lg");
 
-    let textContent = "Start a new game!";
+    let textContent = "התחלת משחק חדש!";
     btn.innerHTML = (`${textContent} <i class="far fa-play-circle"></i>`);
 
     output.classList.add("output");
@@ -39,12 +39,9 @@ function gameStart() {
 
 //game start values
 
-const enWords = ["birds", "animals", "cars", "flowers", "trees", "shirts", "cities"]; // min 3 char
-const heWords = ["ציפור", "עגבניה", "תפוח עץ"]; // min 3 char
-let myWords = enWords;
-if (lang == "he") {
-    myWords = heWords;
-}
+
+const myWords = ["ציפור", "עגבניה", "תפוח עץ"]; // min 3 char
+
 const game = {
     sel: '',
     scrambled: '',
@@ -122,8 +119,8 @@ function winChecker() {
         inputWord.style.borderWidth = "3px";
         inputWord.disabled = true;
         btn.style.display = "block";
-        textContent = "Next Word"
-        btn.innerHTML = `${textContent} <i class="far fa-hand-point-right"></i>`;
+        textContent = "המילה הבאה"
+        btn.innerHTML = `<i class="far fa-hand-point-left"></i> ${textContent}`;
         scoreBoard.classList.remove("alert-danger");
         scoreBoard.classList.add("alert-success");
         game.score++;
@@ -142,7 +139,7 @@ function winChecker() {
 }
 
 function addScore() {
-    let tempOutput = `Correct answers <strong>${game.score}</strong>, Incorrect answers <i>${game.incorrect}</i>, <small>Words left ${game.wordsLeft}</small>`;
+    let tempOutput = `תשובות נכונות <strong>${game.score}</strong>, תשובות לא נכונות <i>${game.incorrect}</i>, <small>עוד ${game.wordsLeft} מילים לסיום</small>`;
     yourScore.innerHTML = tempOutput;
     score.innerHTML = game.score;
 }
@@ -154,19 +151,19 @@ function gameOver() {
     let msg;
     if (game.score > game.incorrect) {
         alert = "success";
-        msg = "Great";
+        msg = "מצויין";
 
     } else if (game.score < game.incorrect) {
         alert = "danger";
-        msg = "Better luck next time";
+        msg = "אתם יכולים יותר טוב. נסו שוב";
     } else if (game.score == game.incorrect) {
         alert = "warning";
-        msg = "You did well";
+        msg = "כל הכבוד";
     }
     // gameArea.append(msg);
-    gameArea.innerHTML = `<div id="gameOverMsg" class="alert alert-${alert}">${msg}<i class="fas fa-trophy"></i><h3>You got ${game.score} correct & ${game.incorrect} incorrect answer of ${game.played}</h3></div>`;
+    gameArea.innerHTML = `<div id="gameOverMsg" class="alert alert-${alert}">${msg}<i class="fas fa-trophy"></i><h3>יש לך ${game.score} תשובות נכונות ו- ${game.incorrect} תשובות לא נכונות מתוך ${game.played} מילים</h3></div>`;
     restart.classList.add("btn", "btn-info", "btn-lg", "restart-btn");
-    textContent = "Restat";
+    textContent = "שחקו שוב";
     restart.innerHTML = `${textContent} <i class="fas fa-redo"></i>`;
     gameArea.append(restart);
 }

@@ -1,19 +1,178 @@
+:root {
+    --primary-color: #073b4c;
+    --primary-light-color: #104d9e;
+    --secondary-color: #ef476f;
+    --accent-color: #6610f2;
+    --accent-light-color: #8c49f8;
+    --success-color: #155724;
+    --danger-color: #721c24;
+    --orange-color: #fd7e14;
+    --orange-light-color: #f29b53;
+    --yellow-color: #ffd166;
+    --cyan-color: #06d6a0;
+    --white-color: #ffffff;
+    --black-color: #000000;
+}
+
+
+/*
+ * Globals
+ */
+
+
+/* Links */
+
+a,
+a:focus,
+a:hover {
+    color: var(--primary-color);
+}
+
+
+/* Custom default button */
+
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+    color: #333;
+    text-shadow: none;
+    /* Prevent inheritance from `body` */
+    background-color: var(--primary-color);
+    border: .05rem solid var(--primary-color);
+}
+
+
+/*
+ * Base structure
+ */
+
+html,
 body {
-    padding: 50px;
-    direction: rtl;
+    height: 100%;
+    /* background-color: #222; */
+    background-color: var(--yellow-color);
+    background-image: url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 16c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm0-2c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zm33.414-6l5.95-5.95L45.95.636 40 6.586 34.05.636 32.636 2.05 38.586 8l-5.95 5.95 1.414 1.414L40 9.414l5.95 5.95 1.414-1.414L41.414 8zM40 48c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm0-2c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zM9.414 40l5.95-5.95-1.414-1.414L8 38.586l-5.95-5.95L.636 34.05 6.586 40l-5.95 5.95 1.414 1.414L8 41.414l5.95 5.95 1.414-1.414L9.414 40z' fill='%235e5a65' fill-opacity='0.27' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+body {
+    display: -ms-flexbox;
+    display: flex;
+    color: var(--primary-color);
+    /* text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
+    box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5); */
+}
+
+.cover-container {
+    max-width: 55em;
+}
+
+
+/*
+ * Header
+ */
+
+.masthead {
+    margin-bottom: 2rem;
+}
+
+.masthead-brand {
+    margin-bottom: 0;
+}
+
+.nav-masthead .nav-link {
+    padding: .25rem 0;
+    font-weight: 700;
+    color: var(--primary-color);
+    background-color: transparent;
+    border-bottom: .25rem solid transparent;
+}
+
+.nav-masthead .nav-link:hover,
+.nav-masthead .nav-link:focus {
+    border-bottom-color: var(--primary-color);
+}
+
+.nav-masthead .nav-link+.nav-link {
+    margin-left: 1rem;
+}
+
+.nav-masthead .active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+@media (min-width: 48em) {
+    .masthead-brand {
+        float: left;
+    }
+    .nav-masthead {
+        float: right;
+    }
+}
+
+
+/*
+ * Cover
+ */
+
+.cover {
+    padding: 0 1.5rem;
+}
+
+.cover .btn-lg {
+    padding: .75rem 1.25rem;
+    font-weight: 700;
+}
+
+
+/*
+ * Footer
+ */
+
+.mastfoot {
+    color: rgba(255, 255, 255, .5);
+}
+
+#gameArea {
+    background-color: var(--secondary-color);
+    padding: 2em;
 }
 
 .btn {
     border-radius: 0;
     margin: 0 auto;
 }
-.output{
+
+.btn-primary {
+    background-color: var(--indigo);
+    border-color: var(--indigo);
+    color: var(--white-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-light-color);
+    border-color: var(--accent-light-color);
+}
+
+.btn-light {
+    background-color: var(--orange-color);
+    border-color: var(--orange-color);
+    color: var(--primary-color);
+}
+
+.btn-light:hover {
+    background-color: var(--orange-light-color);
+    border-color: var(--orange-light-color);
+}
+
+.output {
     text-transform: uppercase;
     padding: 15px;
     font-size: 4em;
     letter-spacing: 0.5em;
 }
-.form-control{
+
+.form-control {
     border-radius: 0;
     font-size: 3em;
     margin: 25px auto;
@@ -21,24 +180,37 @@ body {
     text-align: center;
     text-transform: uppercase
 }
-.alert{
+
+.alert {
     border-radius: 0;
+    color: var(--primary-light-color);
 }
-#gameOverMsg{
+
+.alert-success {
+    color: var(--success-color);
+}
+
+.alert-danger {
+    color: var(--danger-color);
+}
+
+#gameOverMsg {
     padding: 25px;
     font-size: 4em;
 }
-.restart-btn{
+
+.restart-btn {
     color: #fff;
 }
-@media screen and (max-width: 640px){
-    body{
+
+@media screen and (max-width: 640px) {
+    body {
         padding: 1em;
     }
-    .output{
+    .output {
         font-size: 2em;
     }
-    .form-control{
+    .form-control {
         font-size: 2em;
     }
 }
