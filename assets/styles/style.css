@@ -124,17 +124,21 @@ body {
     font-weight: 700;
 }
 
+.cover .list-inline .list-inline-item {
+    width: 49%;
+}
+
 
 /*
  * Footer
  */
 
 .mastfoot {
-    color: rgba(255, 255, 255, .5);
+    color: var(--secondary-color);
 }
 
 #gameArea {
-    background-color: var(--secondary-color);
+    background-color: #ffbe0b;
     padding: 2em;
 }
 
@@ -184,6 +188,8 @@ body {
 .alert {
     border-radius: 0;
     color: var(--primary-light-color);
+    background-color: var(--yellow-color);
+    border-color: var(--orange-light-color);
 }
 
 .alert-success {
@@ -212,5 +218,8 @@ body {
     }
     .form-control {
         font-size: 2em;
+    }
+    .cover .list-inline .list-inline-item {
+        width: 47%;
     }
 }
