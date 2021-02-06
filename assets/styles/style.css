@@ -128,6 +128,10 @@ body {
     width: 49%;
 }
 
+.cover img {
+    max-width: 65%;
+}
+
 
 /*
  * Footer
@@ -221,5 +225,8 @@ body {
     }
     .cover .list-inline .list-inline-item {
         width: 47%;
+    }
+    .cover img {
+        max-width: 100%;
     }
 }
