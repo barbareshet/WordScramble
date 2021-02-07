@@ -1,21 +1,56 @@
+const sheetId = "1bzVQ8I-8CFQKVNexOB3QllS-iaQcrbUHHeHOVV4_eAc";
 const lang = document.documentElement.lang;
 console.log(lang);
 const restart = document.createElement('button');
 const gameArea = document.getElementById("gameArea");
 const btn = document.createElement("button");
+btn.style.display = "none";
 const header = document.getElementById("main-title-wrap");
 const output = document.createElement('div');
 const inputWord = document.createElement('input');
+const selectList = document.createElement('select');
+selectList.style.display = "none";
+selectList.classList.add("custom-select", "custom-select-lg", "mb-3");
 const scoreBoard = document.getElementById('scoreBoard');
+scoreBoard.style.display = "none";
 const yourScore = document.querySelector('.yourScore');
 const score = document.querySelector('.score');
+const wordsArr = []; //setting up a default empty array to hold the lists
+let url = 'https://spreadsheets.google.com/feeds/list/' + sheetId + '/1/public/values?alt=json';
+fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+        // console.log(data); //providein the google sheet object
 
+        // let elem = data.feed.entry[0];//this will provide only the first row of data
+        //looping on all rows in the document, to create different lists
+        data.feed.entry.forEach((elem, index) => {
+                let holder = []; //setting up a default empty array;
+                let opt = document.createElement("option");
+                console.log(elem.title);
+                opt.appendChild(document.createTextNode(elem.title.$t));
+                opt.value = index;
+                selectList.append(opt);
+                for (let key in elem) {
+                    // console.log(key); //printing the key name (lookin for gsx key)
+                    if (key.substring(0, 3) == 'gsx') {
+                        holder.push(elem[key].$t);
+                    }
+                }
+                wordsArr.push(holder)
+            })
+            // console.log(wordsArr);
 
+        gameStart();
+    })
 
 function gameStart() {
 
     //creating the elements
     btn.classList.add("btn", "btn-primary", "btn-lg");
+    btn.style.display = "block";
+    scoreBoard.style.display = "block";
+    selectList.style.display = "block";
 
     let textContent = "Start a new game!";
     btn.innerHTML = (`${textContent} <i class="far fa-play-circle"></i>`);
@@ -33,18 +68,14 @@ function gameStart() {
     gameArea.prepend(scoreBoard);
     gameArea.append(output);
     gameArea.append(inputWord);
+    gameArea.append(selectList);
     gameArea.append(btn);
 }
 
 
 //game start values
 
-const enWords = ["birds", "animals", "cars", "flowers", "trees", "shirts", "cities"]; // min 3 char
-const heWords = ["ציפור", "עגבניה", "תפוח עץ"]; // min 3 char
-let myWords = enWords;
-if (lang == "he") {
-    myWords = heWords;
-}
+let myWords = [];
 const game = {
     sel: '',
     scrambled: '',
@@ -52,15 +83,19 @@ const game = {
     incorrect: 0,
     wordsLeft: 0,
     gameOver: false,
-    played: myWords.length
-
+    played: myWords.length,
+    playing: false
 };
 //Event Listeners
 
 btn.addEventListener('click', (e) => {
-
-    console.log(game.wordsLeft);
-    header.style.display = "none";
+    if (!game.playing) {
+        myWords = wordsArr[selectList.value];
+        selectList.style.display = "none";
+        header.style.display = "none";
+        btn.style.display = "none";
+        game.playing = true;
+    }
     inputWord.style.display = "block";
     inputWord.value = "";
     inputWord.disabled = false;

@@ -213,6 +213,10 @@ body {
     color: #fff;
 }
 
+select {
+    text-transform: uppercase;
+}
+
 @media screen and (max-width: 640px) {
     body {
         padding: 1em;
