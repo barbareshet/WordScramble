@@ -1,6 +1,6 @@
 const sheetId = "1bzVQ8I-8CFQKVNexOB3QllS-iaQcrbUHHeHOVV4_eAc";
 const lang = document.documentElement.lang;
-console.log(lang);
+// console.log(lang);
 const restart = document.createElement('button');
 const gameArea = document.getElementById("gameArea");
 const btn = document.createElement("button");
@@ -27,7 +27,7 @@ fetch(url)
         data.feed.entry.forEach((elem, index) => {
                 let holder = []; //setting up a default empty array;
                 let opt = document.createElement("option");
-                console.log(elem.title);
+                // console.log(elem.title);
                 opt.appendChild(document.createTextNode(elem.title.$t));
                 opt.value = index;
                 selectList.append(opt);
@@ -119,14 +119,14 @@ btn.addEventListener('click', (e) => {
     game.scrambled = sorter(game.sel);
     inputWord.setAttribute('maxlength', game.sel.length); //input word not longer than the chosen word
     output.textContent = `${game.scrambled}`;
-    console.log(game.scrambled);
+    // console.log(game.scrambled);
 });
 
 inputWord.addEventListener('keyup', (e) => {
     //    console.log(e);
     if (inputWord.value.length == game.sel.length || e.code == "Enter") {
         // check the words
-        console.log("checking the word");
+        // console.log("checking the word");
         winChecker();
     }
 })
@@ -151,8 +151,8 @@ function sorter(val) {
 
 function winChecker() {
     scoreBoard.style.display = "block";
-    if (inputWord.value == game.sel) {
-        console.log("correct");
+    if (inputWord.value.toUpperCase() == game.sel.toUpperCase()) {
+        // console.log("correct");
         inputWord.style.borderColor = "green";
         inputWord.style.borderWidth = "3px";
         inputWord.disabled = true;
@@ -170,7 +170,7 @@ function winChecker() {
         inputWord.style.borderWidth = "3px";
         scoreBoard.classList.remove("alert-danger");
         scoreBoard.classList.add("alert-danger");
-        console.log("Wrong");
+        // console.log("Wrong");
         game.incorrect++;
     }
     addScore();
@@ -184,7 +184,7 @@ function addScore() {
 
 function gameOver() {
     game.gameOver = true;
-    console.log('game over');
+    // console.log('game over');
     let alert = "danger";
     let msg;
     if (game.score > game.incorrect) {
